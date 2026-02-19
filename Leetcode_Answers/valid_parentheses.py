@@ -1,19 +1,31 @@
-def valid_parentheses(s):
-    stack = []
-    for char in s:
-        if char in ['(', '{', '[']:
-            stack.append(char)
-        elif char in [')', '}', ']']:
-            if not stack:
-                return False
-            if char == ')' and stack[-1] == '(':
-                stack.pop()
-            elif char == '}' and stack[-1] == '{':
-                stack.pop()
-            elif char == ']' and stack[-1] == '[':
-                stack.pop()
-    return not stack
+'''
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+
+
+SOLVED:
+runtime 1ms
+memory 12.66 MB
+'''
+def valid_parentheses(s):
+    hashmap = {")": "(", "}": "{", "]": "["}
+    stk = []
+    for char in s:
+        if char not in hashmap:
+            stk.append(char)
+        else:
+            if not stk:
+                return False
+            else:
+                popped = stk.pop()
+                if popped != hashmap[char]:
+                    return False
+    return not stk
 
 print(valid_parentheses("()"))
 print(valid_parentheses("()[]{}"))
