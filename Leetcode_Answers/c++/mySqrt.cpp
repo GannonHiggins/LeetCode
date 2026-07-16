@@ -15,15 +15,29 @@ Solved:
 
 
 int mySqrt(int x) {
+    // Base case: square root of 0 is 0
     if (x == 0) return 0;
+    
+    // Binary search bounds: search space is [1, x]
     int left = 1, right = x;
+    
+    // Binary search to find the largest integer whose square is <= x
     while (left <= right) {
+        // Calculate mid to avoid overflow
         int mid = left + (right - left) / 2;
+        
+        // Use long long to prevent overflow when mid is large (e.g., x up to 2^31-1)
         long long square = (long long)mid * mid;
+        
+        // Perfect square found
         if (square == x) return mid;
+        // mid is too small, search right half
         else if (square < x) left = mid + 1;
+        // mid is too large, search left half
         else right = mid - 1;
     }
+    
+    // Return right as it will be the largest integer whose square is <= x
     return right;
 }
 
