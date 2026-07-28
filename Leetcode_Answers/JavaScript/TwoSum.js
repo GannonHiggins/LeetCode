@@ -17,13 +17,18 @@ SOLVED:
 */
 
 var twoSum = function (nums, target) {
+  // Iterate through each element in the array
   for (let i = 0; i < nums.length; i++) {
+    // Compare current element with all elements after it
     for (let j = i + 1; j < nums.length; j++) {
+      // Check if the sum of two numbers equals the target
       if (nums[i] + nums[j] === target) {
+        // Return the indices of the two numbers
         return [i, j];
       }
     }
   }
 };
 
+// Test case: should return [0, 1] because nums[0] + nums[1] = 2 + 7 = 9
 console.log(twoSum([2, 7, 11, 15], 9));

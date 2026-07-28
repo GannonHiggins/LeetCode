@@ -15,20 +15,28 @@ SOLVED:
 */
 
 var isPalindrome = function (x) {
+  // Negative numbers are never palindromes
   if (x < 0) return false;
 
+  // Convert number to string for easy character comparison
   const str = x.toString();
+  
+  // Initialize two pointers at the start and end
   let left = 0;
   let right = str.length - 1;
 
+  // Compare characters from both ends moving inward
   while (left < right) {
+    // If characters don't match, it's not a palindrome
     if (str[left] !== str[right]) {
       return false;
     }
+    // Move pointers closer to the center
     left++;
     right--;
   }
 
+  // If all characters matched, it's a palindrome
   return true;
 };
 
